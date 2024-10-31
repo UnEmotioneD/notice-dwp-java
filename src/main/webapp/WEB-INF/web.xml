@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>06_Notice</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>06_Notice</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
+
+	<!-- 리스너 등록 -->
+	<listener>
+		<listener-class>kr.or.iei.common.SearchNoticeTypeListener</listener-class>
+	</listener>
+
+	<!-- 필터 경로 설정 -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>kr.or.iei.common.filter.EncodingFilter</filter-class>
+	</filter>
+	<!-- 어떤 URL 을 클릭하면 동작을 할지 설정 -->
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<!-- / 밑에 있는 모든 URL -->
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 </web-app>
