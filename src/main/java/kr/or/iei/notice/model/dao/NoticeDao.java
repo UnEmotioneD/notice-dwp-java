@@ -176,7 +176,7 @@ public class NoticeDao {
 	public int updateReadCount(Connection conn, String noticeNo) {
 		PreparedStatement pt = null;
 		int result = 0;
-		String query = "UPDATE TBL_NOTICE SET READ_COUND = READ_COUNT + 1 WHERE NOTICE_NO = ?";
+		String query = "UPDATE TBL_NOTICE SET READ_COUNT = READ_COUNT + 1 WHERE NOTICE_NO = ?";
 
 		try {
 			pt = conn.prepareStatement(query);
@@ -264,10 +264,28 @@ public class NoticeDao {
 		return result;
 	}
 
+	public int deleteNotice(Connection conn, String noticeNo) {
+		PreparedStatement pt = null;
+		int result = 0;
+		String query = "DELETE FROM TBL_NOTICE WHERE NOTICE_NO = ?";
+	
+		try {
+			pt = conn.prepareStatement(query);
+			pt.setString(1, noticeNo);
+			result = pt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pt);
+		}
+
+		return result;
+	}
+
 	public int insertComment(Connection conn, NoticeComment comment) {
 		PreparedStatement pt = null;
 		int result = 0;
-		String query = "INSERT INTO tbl_notice_comment VALUES (TO_CHAR(SYSDATE, 'yymmdd') || LPAD(seq_notice_comment.NEXTVAL, 4, '0'), ?, ?, sysdate, ?)";
+		String query = "INSERT INTO TBL_NOTICE_COMMENT VALUES(TO_CHAR(SYSDATE,'yymmdd') || LPAD(SEQ_NOTICE_COMMENT.NEXTVAL,4,'0'), ?, ?, SYSDATE, ?)";
 
 		try {
 			pt = conn.prepareStatement(query);
@@ -297,17 +315,14 @@ public class NoticeDao {
 			rt = pt.executeQuery();
 
 			while (rt.next()) {
-
 				NoticeComment c = new NoticeComment();
 				c.setCommentNo(rt.getString("COMMENT_NO"));
 				c.setCommentWriter(rt.getString("COMMENT_WRITER"));
 				c.setCommentContent(rt.getString("COMMENT_CONTENT"));
 				c.setCommentRef(rt.getString("COMMENT_REF"));
 				c.setCommentDate(rt.getString("COMMENT_DATE"));
-
 				list.add(c);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -346,13 +361,12 @@ public class NoticeDao {
 			pt.setString(1, comment.getCommentContent());
 			pt.setString(2, comment.getCommentNo());
 			result = pt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-
 			JDBCTemplate.close(pt);
 		}
+
 		return result;
 	}
 

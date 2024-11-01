@@ -72,7 +72,6 @@ public class NoticeFileDownServlet extends HttpServlet {
 						bos.write(read);
 					}
 				}
-
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

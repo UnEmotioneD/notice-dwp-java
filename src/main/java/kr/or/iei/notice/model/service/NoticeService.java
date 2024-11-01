@@ -65,8 +65,8 @@ public class NoticeService {
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + (pageNo - 1) + "&noticeCd=" + noticeCd
 					+ "&noticeCdNm=" + noticeCdNm + "'>";
-			pageNavi += "<span class='material-icons'>chevron_left</span>";
-			pageNavi += "</a></li>";
+			pageNavi += "<span class='material-icons'>chevron_left</span></a>";
+			pageNavi += "</li>";
 		}
 
 		// 페이지 네비게이션 사이즈만큼 반복하며 태그 생성
@@ -75,10 +75,10 @@ public class NoticeService {
 
 			// 선택한 페이지와 선택하지 않은 페이지를 시각적으로 다르게 표현
 			if (reqPage == pageNo) {
-				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage='" + pageNo + "&noticeCd=" + noticeCd
+				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage=" + pageNo + "&noticeCd=" + noticeCd
 						+ "&noticeCdNm=" + noticeCdNm + "'>";
 			} else {
-				pageNavi += "<a class='page-item' href='/notice/list?reqPage='" + pageNo + "&noticeCd=" + noticeCd
+				pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + pageNo + "&noticeCd=" + noticeCd
 						+ "&noticeCdNm=" + noticeCdNm + "'>";
 			}
 
@@ -94,10 +94,10 @@ public class NoticeService {
 		// 시작번호 <= 전체 페이지 갯수
 		if (pageNo <= totPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item href='/notice/list?reqPage='" + pageNo + "&noticeCd" + noticeCd + "&noticeCdNm"
+			pageNavi += "<a class='page-item href='/notice/list?reqPage=" + pageNo + "&noticeCd" + noticeCd + "&noticeCdNm"
 					+ noticeCdNm + "'>";
-			pageNavi += "<span class='material-icons'>chevron_right</span>";
-			pageNavi += "</a></li>";
+			pageNavi += "<span class='material-icons'>chevron_right</span></a>";
+			pageNavi += "</li>";
 		}
 
 		pageNavi += "</ul>";
@@ -186,8 +186,8 @@ public class NoticeService {
 			ArrayList<NoticeFile> fileList = dao.selectNoticeFileList(conn, noticeNo);
 			n.setFileList(fileList);
 		}
-
 		JDBCTemplate.close(conn);
+
 		return n;
 	}
 
@@ -223,9 +223,7 @@ public class NoticeService {
 					} else {
 						// 삭제 대상이 아님 (서블릿으로 preFileList 를 리턴할 때 삭제 대상파일만 리턴할것임)
 						preFileList.remove(i);
-
 					}
-
 				}
 			}
 
@@ -233,7 +231,6 @@ public class NoticeService {
 			for (NoticeFile addFile : addFileList) {
 				result += dao.insertNoticeFile(conn, addFile);
 			}
-
 		}
 
 		// 변경된 행의 수
@@ -243,6 +240,26 @@ public class NoticeService {
 			JDBCTemplate.commit(conn);
 			JDBCTemplate.close(conn);
 			return preFileList;
+
+		} else {
+			JDBCTemplate.rollback(conn);
+			JDBCTemplate.close(conn);
+			return null;
+		}
+	}
+	
+	public ArrayList<NoticeFile> deleteNotice(String noticeNo) {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<NoticeFile> delList = dao.selectNoticeFileList(conn, noticeNo);
+		int result = dao.deleteNotice(conn, noticeNo);
+
+		System.out.println(delList);
+		System.out.println(result);
+
+		if (result > 0) {
+			JDBCTemplate.commit(conn);
+			JDBCTemplate.close(conn);
+			return delList;
 
 		} else {
 			JDBCTemplate.rollback(conn);
