@@ -12,6 +12,7 @@ tmp/
 local.properties
 .loadpath
 .recommenders
+.settings/
 
 # External tool builders
 .externalToolBuilders/
@@ -122,3 +123,5 @@ $RECYCLE.BIN/
 
 # Ignore the build directory
 build/
+
+.classpath

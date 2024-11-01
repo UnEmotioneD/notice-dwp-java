@@ -86,7 +86,7 @@
 
 <script>
 	$('#noticeContent').summernote({
-		height : 500,
+		height : 1000,
 		width : 1000,
 		lang : "ko-KR",
 		disableResize : true,
