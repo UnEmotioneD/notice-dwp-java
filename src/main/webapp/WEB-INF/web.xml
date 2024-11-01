@@ -12,7 +12,6 @@
 		<welcome-file>default.jsp</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 	</welcome-file-list>
-
 	<!-- 리스너 등록 -->
 	<listener>
 		<listener-class>kr.or.iei.common.SearchNoticeTypeListener</listener-class>
