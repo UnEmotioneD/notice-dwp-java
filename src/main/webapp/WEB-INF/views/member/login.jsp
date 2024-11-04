@@ -90,7 +90,7 @@
 					<div class="member-link-box">
 						<a href="/member/joinFrm">회원가입</a> | <a href="javascript:void(0)"
 							onclick="searchInfo('id');">아이디 찾기</a> | <a
-							href="javascript:void(0" onclick="searchInfo('pw');">비밀번호 찾기</a>
+							href="javascript:void(0)" onclick="searchInfo('pw');">비밀번호 찾기</a>
 					</div>
 
 				</form>
@@ -101,7 +101,7 @@
 
 	<script>
 		// 로그인 버튼 클릭시 동작함수(submit 이전에)
-		function loginValidate() {
+		function loginValidate(gb) {
 			if ($("#loginId").val().length < 1) {
 				msg("알림", "아이디를 입력하세요", "warning");
 				$("#loginId").focus();
@@ -113,20 +113,21 @@
 				return false;
 			}
 		}
-		
-		function searchInfo(){
+
+		function searchInfo(gb) {
 			let popupWidth = 500;
 			let popupHeight = 330;
-			
-			if(gb == 'pw'){
+
+			if (gb == 'pw') {
 				popupHeight = 400;
 			}
-			
+
 			let top = (window.innerHeight - popupHeight) / 2 + window.screenY;
 			let left = (window.innerWidth - popupWidth) / 2 + window.screenX;
-			
-			window.open("/member/searchInfoFrm?gb=" + gb, 
-					"searchInfo", "width="popupWidth+, "height=" + popupHeight, "top=" + top, "left=" + left);
+
+			window.open("/member/searchInfoFrm?gb=" + gb, "searchInfo",
+					"width=" + popupWidth + ",height=" + popupHeight + ",top="
+							+ top + ",left=" + left);
 		}
 	</script>
 

@@ -139,4 +139,11 @@ public class MemberService {
 		}
 	}
 
+	public String srchInfoId(String memberEmail) {
+		Connection conn = JDBCTemplate.getConnection();
+		String memberId = dao.srchInfoId(conn, memberEmail);
+		JDBCTemplate.close(conn);
+		return memberId;
+	}
+
 }

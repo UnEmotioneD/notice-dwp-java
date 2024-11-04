@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>searchInfoFrm.jsp</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="/resources/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/resources/css/default.css" />
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	type="text/css" />
 <style>
 .wrap {
 	min-width: 400px;
@@ -22,19 +28,17 @@
 }
 
 .section {
-	width: 400ps;
+	width: 400px;
 	margin: 0 auto;
 }
 
 .btn-wrap {
 	display: flex;
-	align-times: center;
+	align-items: center;
 	justify-content: center;
 	gap: 10px;
 }
 </style>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="/resources/js/sweetalert.min.js"></script>
 </head>
 <body>
 	<div class="wrap">
@@ -48,29 +52,27 @@
 						<div class="page-title">비밀번호 찾기</div>
 					</c:if>
 
-					<form id="srchInfoForm" action="/member/srchInfo" method="post">
+					<div class="input-wrap">
+						<div class="input-title">
+							<label for="memberEmail">이메일 입력</label>
+						</div>
+						<div class="input-item">
+							<input type="email" name="memberEmail" id="memberEmail">
+						</div>
+					</div>
+
+					<c:if test="${gb eq 'pw'}">
 						<div class="input-wrap">
+
 							<div class="input-title">
-								<label for="memberEmail">이메일 입력</label>
+								<label for="memberId">아이디 입력</label>
+
 							</div>
 							<div class="input-item">
-								<input type="email" name="memberEmail" id="memberEmail">
+								<input type="text" name="memberId" id="memberId">
 							</div>
 						</div>
-
-						<c:if test="${gb eq 'pw'}">
-							<div class="input-wrap">
-
-								<div class="input-titlie">
-									<label for="memberId">아이디 입력</label>
-
-								</div>
-								<div class="input-item">
-									<input type="text" name="memberId" id="memberId">
-								</div>
-							</div>
-						</c:if>
-					</form>
+					</c:if>
 
 					<div class="btn-wrap">
 						<div>
@@ -82,6 +84,7 @@
 								class="btn-secondary md">닫기</button>
 						</div>
 					</div>
+
 				</div>
 			</section>
 		</main>
@@ -125,7 +128,18 @@
 				data : param,
 				type : "GET",
 				success : function(res) {
+					if (gb == 'id') {
 
+						if (res == '') {
+							msg('알림', '일치하는 회원이 존재하지 않습니다', 'warning',
+									'closeFn()');
+						} else {
+							msg('알림', '아이디 찾기 결과 : ' + res, 'success',
+									'closeFn()');
+						}
+					} else if (gb == 'pw') {
+
+					}
 				},
 				error : function() {
 					console.log("ajax 통신 오류");
@@ -137,11 +151,15 @@
 			self.close();
 		}
 
-		function msg(title, text, icon) {
+		function msg(title, text, icon, callback) {
 			swal({
 				title : title,
 				text : text,
 				icon : icon,
+			}).then(function() {
+				if (callback != null && callback != '') {
+					eval(callback);
+				}
 			});
 		}
 	</script>

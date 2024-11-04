@@ -204,4 +204,29 @@ public class MemberDao {
 
 		return result;
 	}
+
+	public String srchInfoId(Connection conn, String memberEmail) {
+		PreparedStatement pt = null;
+		ResultSet rt = null;
+		String query = "SELECT MEMBER_ID FROM TBL_MEMBER WHERE MEMBER_EMAIL = ?";
+		String memberId = null;
+
+		try {
+			pt = conn.prepareStatement(query);
+			pt.setString(1, memberEmail);
+			rt = pt.executeQuery();
+
+			if (rt.next()) {
+				memberId = rt.getString("member_id");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rt);
+			JDBCTemplate.close(pt);
+		}
+
+		return memberId;
+	}
 }

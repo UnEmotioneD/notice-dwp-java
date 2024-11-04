@@ -1,4 +1,4 @@
-package kr.or.iei.notice.controller;
+package kr.or.iei.member.controller;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MemberSearchInfoFrmServlet
  */
-@WebServlet("\"/member/searchInfoFrm")
+@WebServlet("/member/searchInfoFrm")
 public class MemberSearchInfoFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
