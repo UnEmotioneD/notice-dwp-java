@@ -23,6 +23,7 @@
 				<li><a href='api/naverMaps'>API</a>
 					<ul class="sub-menu">
 						<li><a href='/api/naverMaps'>지도</a>
+						<li><a href='/api/emailSendFrm'>이메일</a>
 					</ul></li>
 
 			</ul>
