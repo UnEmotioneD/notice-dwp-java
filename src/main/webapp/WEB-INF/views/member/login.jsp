@@ -88,8 +88,9 @@
 					</div>
 
 					<div class="member-link-box">
-						<a href="/member/joinFrm">회원가입</a> | <a href="#">아이디 찾기</a> | <a
-							href="#">비밀번호 찾기</a>
+						<a href="/member/joinFrm">회원가입</a> | <a href="javascript:void(0)"
+							onclick="searchInfo('id');">아이디 찾기</a> | <a
+							href="javascript:void(0" onclick="searchInfo('pw');">비밀번호 찾기</a>
 					</div>
 
 				</form>
@@ -111,6 +112,21 @@
 				$("#loginPw").focus();
 				return false;
 			}
+		}
+		
+		function searchInfo(){
+			let popupWidth = 500;
+			let popupHeight = 330;
+			
+			if(gb == 'pw'){
+				popupHeight = 400;
+			}
+			
+			let top = (window.innerHeight - popupHeight) / 2 + window.screenY;
+			let left = (window.innerWidth - popupWidth) / 2 + window.screenX;
+			
+			window.open("/member/searchInfoFrm?gb=" + gb, 
+					"searchInfo", "width="popupWidth+, "height=" + popupHeight, "top=" + top, "left=" + left);
 		}
 	</script>
 
