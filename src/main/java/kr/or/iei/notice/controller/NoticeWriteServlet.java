@@ -50,17 +50,18 @@ public class NoticeWriteServlet extends HttpServlet {
 		int maxSize = 1024 * 1024 * 10; // 바이트 단위 // 10MB 까지
 
 		File dir = new File(savePath); // 오늘 날짜로 지정한 폴더
+
 		if (!dir.exists()) { // 해당 경로에 폴더가 생성되어 있지 않을때
-			dir.mkdirs(); // 폴더 생성
+			dir.mkdir(); // 폴더 생성
 		}
 
 		MultipartRequest mRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyRenamePolicy());
 
 		// 2. 값 추출
-		String noticeTitle = mRequest.getParameter("noticeTitle");
-		String noticeContent = mRequest.getParameter("noticeContent");
-		String noticeWriter = mRequest.getParameter("noticeWriter");
 		String noticeCd = mRequest.getParameter("noticeCd");
+		String noticeTitle = mRequest.getParameter("noticeTitle");
+		String noticeWriter = mRequest.getParameter("noticeWriter");
+		String noticeContent = mRequest.getParameter("noticeContent");
 		String noticeCdNm = mRequest.getParameter("noticeCdNm");
 
 		// 3. 첨부파일 복수개 처리(input type-file 이 여러개 존재)
@@ -105,7 +106,6 @@ public class NoticeWriteServlet extends HttpServlet {
 			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/notice/list?reqPage=1&noticeCd=" + noticeCd + "&noticeCdNm=" + noticeCdNm);
 		}
-
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 

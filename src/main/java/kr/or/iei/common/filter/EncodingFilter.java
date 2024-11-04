@@ -20,21 +20,18 @@ public class EncodingFilter extends HttpFilter implements Filter {
      */
     public EncodingFilter() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see Filter#destroy()
 	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
+	public void destroy() {}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		request.setCharacterEncoding("utf-8");
+		request.setCharacterEncoding("UTF-8");
 		
 		chain.doFilter(request, response);
 	}
@@ -42,8 +39,6 @@ public class EncodingFilter extends HttpFilter implements Filter {
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	public void init(FilterConfig fConfig) throws ServletException {}
 
 }

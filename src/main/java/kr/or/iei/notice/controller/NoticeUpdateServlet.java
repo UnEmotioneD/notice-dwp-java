@@ -112,17 +112,13 @@ public class NoticeUpdateServlet extends HttpServlet {
 				if (delFile.exists()) {
 					delFile.delete();
 				}
-
 			}
-
 			request.setAttribute("title", "알림");
 			request.setAttribute("msg", "게시글이 정상적으로 수정되었습니다");
 			request.setAttribute("icon", "success");
 			request.setAttribute("loc", "/notice/view?noticeNo=" + noticeNo);
 		}
-
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
-
 	}
 
 	/**

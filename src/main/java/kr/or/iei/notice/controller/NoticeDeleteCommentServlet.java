@@ -22,7 +22,6 @@ public class NoticeDeleteCommentServlet extends HttpServlet {
      */
     public NoticeDeleteCommentServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -39,23 +38,21 @@ public class NoticeDeleteCommentServlet extends HttpServlet {
 			request.setAttribute("title", "알림");
 			request.setAttribute("msg", "댓글이 삭제 되었습니다");
 			request.setAttribute("icon", "success");
-			request.setAttribute("loc", "/notice/view?noticeNo" + noticeNo + "&commentChk=chk");
+			request.setAttribute("loc", "/notice/view?noticeNo=" + noticeNo + "&commentChk=chk");
 		} else {
 			request.setAttribute("title", "알림");
 			request.setAttribute("msg", "댓글이 삭제 중 오류가 발생하였습니다"); 
 			request.setAttribute("icon", "error");
-			request.setAttribute("loc", "/notice/view?noticeNo" + noticeNo + "&commentChk=chk");
+			request.setAttribute("loc", "/notice/view?noticeNo=" + noticeNo + "&commentChk=chk");
 		}
 		
 		request.getRequestDispatcher(commentNo).forward(request, response);
-
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
