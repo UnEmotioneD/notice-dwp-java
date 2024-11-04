@@ -370,4 +370,35 @@ public class NoticeDao {
 		return result;
 	}
 
+	public ArrayList<Notice> selectIndexanoticeList(Connection conn) {
+		PreparedStatement pt = null;
+		ResultSet rt = null;
+		String query = "SELECT * FROM ( SELECT ROW_NUMBER() OVER ( PARTITION BY NOTICE_CD ORDER BY NOTICE_DATE DESC ) AS RNUM, A.* FROM TBL_NOTICE A ) WHERE RNUM < = 5";
+		ArrayList<Notice> list = new ArrayList<Notice>();
+
+		try {
+			pt = conn.prepareStatement(query);
+			rt = pt.executeQuery();
+
+			while (rt.next()) {
+				Notice n = new Notice();
+				n.setNoticeNo(rt.getString("NOTICE_NO"));
+				n.setNoticeCd(rt.getString("NOTICE_CD"));
+				n.setNoticeTitle(rt.getString("NOTICE_TITLE"));
+				n.setNoticeContent(rt.getString("NOTICE_CONTENT"));
+				n.setNoticeWriter(rt.getString("NOTICE_WRITER"));
+				n.setNoticeDate(rt.getString("NOTICE_DATE"));
+				n.setReadCount(rt.getInt("READ_COUNT"));
+				
+				list.add(n);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rt);
+			JDBCTemplate.close(pt);
+		}
+		return list;
+	}
+
 }

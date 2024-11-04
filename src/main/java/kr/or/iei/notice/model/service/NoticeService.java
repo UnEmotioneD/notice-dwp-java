@@ -191,7 +191,8 @@ public class NoticeService {
 		return n;
 	}
 
-	public ArrayList<NoticeFile> updateNotice(Notice notice, ArrayList<NoticeFile> addFileList, String[] delFileNoList) {
+	public ArrayList<NoticeFile> updateNotice(Notice notice, ArrayList<NoticeFile> addFileList,
+			String[] delFileNoList) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		// 게시글 정보 수정
@@ -299,15 +300,22 @@ public class NoticeService {
 	public int updateComment(NoticeComment comment) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateComment(conn, comment);
-		
+
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
-		
+
 		return result;
+	}
+
+	public ArrayList<Notice> selectIndexNoticeList() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Notice> list = dao.selectIndexanoticeList(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }
