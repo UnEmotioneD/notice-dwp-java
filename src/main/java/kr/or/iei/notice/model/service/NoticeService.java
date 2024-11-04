@@ -75,8 +75,8 @@ public class NoticeService {
 
 			// 선택한 페이지와 선택하지 않은 페이지를 시각적으로 다르게 표현
 			if (reqPage == pageNo) {
-				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage='" + pageNo + "&noticeCd=" + noticeCd
-						+ "&noticeCdNm=" + noticeCdNm + "'>";
+				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage='" + pageNo + "&noticeCd="
+						+ noticeCd + "&noticeCdNm=" + noticeCdNm + "'>";
 			} else {
 				pageNavi += "<a class='page-item' href='/notice/list?reqPage='" + pageNo + "&noticeCd=" + noticeCd
 						+ "&noticeCdNm=" + noticeCdNm + "'>";
@@ -94,8 +94,8 @@ public class NoticeService {
 		// 시작번호 <= 전체 페이지 갯수
 		if (pageNo <= totPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item href='/notice/list?reqPage='" + pageNo + "&noticeCd" + noticeCd + "&noticeCdNm"
-					+ noticeCdNm + "'>";
+			pageNavi += "<a class='page-item href='/notice/list?reqPage='" + pageNo + "&noticeCd" + noticeCd
+					+ "&noticeCdNm" + noticeCdNm + "'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</a></li>";
 		}
@@ -191,7 +191,8 @@ public class NoticeService {
 		return n;
 	}
 
-	public ArrayList<NoticeFile> updateNotice(Notice notice, ArrayList<NoticeFile> addFileList, String[] delFileNoList) {
+	public ArrayList<NoticeFile> updateNotice(Notice notice, ArrayList<NoticeFile> addFileList,
+			String[] delFileNoList) {
 		Connection conn = JDBCTemplate.getConnection();
 
 		// 게시글 정보 수정
@@ -282,15 +283,22 @@ public class NoticeService {
 	public int updateComment(NoticeComment comment) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = dao.updateComment(conn, comment);
-		
+
 		if (result > 0) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
 		JDBCTemplate.close(conn);
-		
+
 		return result;
+	}
+
+	public ArrayList<Notice> selectIndexNoticeList() {
+		Connection conn = JDBCTemplate.getConnection();
+		ArrayList<Notice> list = dao.selectIndexanoticeList(conn);
+		JDBCTemplate.close(conn);
+		return list;
 	}
 
 }
