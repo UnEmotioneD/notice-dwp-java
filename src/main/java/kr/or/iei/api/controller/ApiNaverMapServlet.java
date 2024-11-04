@@ -29,8 +29,7 @@ public class ApiNaverMapServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/WEB-INF/views/api/naverMaps.sjp").forward(request, response);
-
+		request.getRequestDispatcher("/WEB-INF/views/api/naverMaps.jsp").forward(request, response);
 	}
 
 	/**
