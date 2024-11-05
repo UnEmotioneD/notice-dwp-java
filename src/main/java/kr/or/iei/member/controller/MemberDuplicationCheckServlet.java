@@ -22,7 +22,6 @@ public class MemberDuplicationCheckServlet extends HttpServlet {
 	 */
 	public MemberDuplicationCheckServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -50,7 +49,6 @@ public class MemberDuplicationCheckServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

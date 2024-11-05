@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import kr.or.iei.member.model.service.MemberService;
 import kr.or.iei.member.model.vo.Member;
 
@@ -25,21 +27,22 @@ public class MemberPwChgServlet extends HttpServlet {
 	 */
 	public MemberPwChgServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 1. Encoding
 		// 2. Extract values
-		String memberNo = request.getParameter("memberNo");
+		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		String newMemberPw = request.getParameter("newMemberPw");
 
 		// 3. Business logic -- 비밀번호 변경
+
 		// 3.1) 사용자가 입력한 기존 비밀번호와 등록되어있는 비밀번호가 같은지 비교
 
 		/*
@@ -58,7 +61,18 @@ public class MemberPwChgServlet extends HttpServlet {
 		if (session != null) {
 			Member loginMember = (Member) session.getAttribute("loginMember");
 
-			if (!loginMember.getMemberPw().equals(memberPw)) {
+//			if (!loginMember.getMemberPw().equals(memberPw)) {
+//				request.setAttribute("title", "실패");
+//				request.setAttribute("msg", "기존 비밀번호가 일치하지 않습니다");
+//				request.setAttribute("icon", "error");
+//				request.setAttribute("callback", "self.close();"); // 이동한 msg.jsp 에서 알림창을 띄워주고난 이후에 실행할 함수 등록
+//
+//				view.forward(request, response);
+//				return;
+//			}
+
+			// After password encryption
+			if (!BCrypt.checkpw(memberPw, loginMember.getMemberPw())) {
 				request.setAttribute("title", "실패");
 				request.setAttribute("msg", "기존 비밀번호가 일치하지 않습니다");
 				request.setAttribute("icon", "error");
@@ -69,10 +83,9 @@ public class MemberPwChgServlet extends HttpServlet {
 			}
 
 			MemberService service = new MemberService();
-			int result = service.updateamemberPw(memberNo, newMemberPw);
+			int result = service.updateMemberPw(memberId, newMemberPw);
 
 			// 4. Process results
-
 			if (result > 0) {
 				request.setAttribute("title", "알림");
 				request.setAttribute("msg", "비밀번호가 변경되었습니다. 변경된 비밀번호로 다시 로그인하세요");
@@ -96,8 +109,8 @@ public class MemberPwChgServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 
