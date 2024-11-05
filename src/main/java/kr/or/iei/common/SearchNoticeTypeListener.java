@@ -19,7 +19,7 @@ public class SearchNoticeTypeListener implements ServletContextListener {
 	 * Default constructor.
 	 */
 	public SearchNoticeTypeListener() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class SearchNoticeTypeListener implements ServletContextListener {
 	 */
 	// 소멸될때
 	public void contextDestroyed(ServletContextEvent sce) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	/**

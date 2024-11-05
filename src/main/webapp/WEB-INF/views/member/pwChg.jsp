@@ -50,8 +50,8 @@
 
 					<form id="pwChgForm" action="/member/pwChg" method="post">
 
-						<input type="hidden" name="memberNo"
-							value="${loginMember.memberNo}">
+						<input type="hidden" name="memberId"
+							value="${loginMember.memberId}">
 
 						<div class="input-wrap">
 							<div class="input-title">

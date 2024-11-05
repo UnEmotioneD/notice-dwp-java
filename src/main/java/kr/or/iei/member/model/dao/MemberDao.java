@@ -57,16 +57,49 @@ public class MemberDao {
 		return cnt;
 	}
 
+//	public Member memberLogin(Connection conn, String loginId, String loginPw) {
+//		PreparedStatement pt = null;
+//		ResultSet rt = null;
+//		Member m = null;
+//		String query = "SELECT * FROM TBL_MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?";
+//
+//		try {
+//			pt = conn.prepareStatement(query);
+//			pt.setString(1, loginId);
+//			pt.setString(2, loginPw);
+//			rt = pt.executeQuery();
+//
+//			if (rt.next()) {
+//				m = new Member();
+//				m.setMemberNo(rt.getString("MEMBER_NO"));
+//				m.setMemberId(rt.getString("MEMBER_ID"));
+//				m.setMemberPw(rt.getString("MEMBER_PW"));
+//				m.setMemberName(rt.getString("MEMBER_NAME"));
+//				m.setMemberEmail(rt.getString("MEMBER_EMAIL"));
+//				m.setMemberPhone(rt.getString("MEMBER_PHONE"));
+//				m.setMemberAddr(rt.getString("MEMBER_ADDR"));
+//				m.setMemberLevel(rt.getInt("MEMBER_LEVEL"));
+//				m.setEnrollDate(rt.getString("ENROLL_DATE"));
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rt);
+//			JDBCTemplate.close(pt);
+//		}
+//		return m;
+//	}
+
+	// After password encryption
 	public Member memberLogin(Connection conn, String loginId, String loginPw) {
 		PreparedStatement pt = null;
 		ResultSet rt = null;
 		Member m = null;
-		String query = "SELECT * FROM TBL_MEMBER WHERE MEMBER_ID = ? AND MEMBER_PW = ?";
+		String query = "SELECT * FROM TBL_MEMBER WHERE MEMBER_ID = ?";
 
 		try {
 			pt = conn.prepareStatement(query);
 			pt.setString(1, loginId);
-			pt.setString(2, loginPw);
 			rt = pt.executeQuery();
 
 			if (rt.next()) {
@@ -128,7 +161,6 @@ public class MemberDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -149,8 +181,13 @@ public class MemberDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
+	}
+
+
+	// TODO update member password 작성하기
+	public int updateMemberPw(Connection conn, String memberId, String newMemberPw) {
+		return 0;
 	}
 
 	public ArrayList<Member> selectAllMember(Connection conn) {
@@ -181,7 +218,6 @@ public class MemberDao {
 			JDBCTemplate.close(rt);
 			JDBCTemplate.close(pt);
 		}
-
 		return list;
 	}
 
@@ -201,7 +237,6 @@ public class MemberDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -226,7 +261,32 @@ public class MemberDao {
 			JDBCTemplate.close(rt);
 			JDBCTemplate.close(pt);
 		}
-
 		return memberId;
 	}
+
+	public String srchInfoPw(Connection conn, String memberId, String memberEmail) {
+		PreparedStatement pt = null;
+		ResultSet rt = null;
+		String query = "SELECT MEMBER_PW FROM TBL_MEMBER WHERE MEMBER_ID = ? AND MEMBER_EMAIL = ?";
+		String toEmail = "";
+
+		try {
+			pt = conn.prepareStatement(query);
+			pt.setString(1, memberId);
+			pt.setString(2, memberEmail);
+			
+			rt = pt.executeQuery();
+
+			if (rt.next()) {
+				toEmail = rt.getString("MEMBER_PW");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rt);
+			JDBCTemplate.close(pt);
+		}
+		return toEmail;
+	}
+
 }
