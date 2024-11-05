@@ -139,6 +139,15 @@
 						}
 					} else if (gb == 'pw') {
 
+						console.log(res);
+
+						if (res == '0') {
+							msg('알림', '생성한 임시 비밀번호가 입력하신 이메일로 전송되었습니다', 'success', 'closeFn()');
+						} else if (res == '1') {
+							msg('알림', '비밀번호 차기 중 오류가 발생하였습니다', 'wraning');
+						} else if (res == '2') {
+							msg('알림', '입력하진 정보와 일치하는 회원 정보가 존재하지 않습니다', 'wrnaing');
+						}
 					}
 				},
 				error : function() {
