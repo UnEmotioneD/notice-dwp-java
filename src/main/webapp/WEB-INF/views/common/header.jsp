@@ -21,7 +21,7 @@
 						href="/notice/list?reqPage=1&noticeCd=${noticeType.noticeCd}&noticeCdNm=${noticeType.noticeCdNm}">${noticeType.noticeCdNm}</a></li>
 				</c:forEach>
 
-				<li><a href='api/naverMaps'>API</a>
+				<li><a href='/api/naverMaps'>API</a>
 					<ul class="sub-menu">
 						<li><a href='/api/naverMaps'>지도</a>
 						<li><a href='/api/emailSendFrm'>이메일</a>
