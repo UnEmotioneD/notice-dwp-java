@@ -7,6 +7,7 @@
 	type="text/css" />
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="/resources/js/sweetalert.min.js"></script>
+
 <header class="header">
 	<div>
 		<div class="Logo">
@@ -19,6 +20,13 @@
 					<li><a
 						href="/notice/list?reqPage=1&noticeCd=${noticeType.noticeCd}&noticeCdNm=${noticeType.noticeCdNm}">${noticeType.noticeCdNm}</a></li>
 				</c:forEach>
+
+				<li><a href='/api/naverMaps'>API</a>
+					<ul class="sub-menu">
+						<li><a href='/api/naverMaps'>지도</a>
+						<li><a href='/api/emailSendFrm'>이메일</a>
+					</ul></li>
+
 			</ul>
 		</nav>
 		<ul class="user-menu">

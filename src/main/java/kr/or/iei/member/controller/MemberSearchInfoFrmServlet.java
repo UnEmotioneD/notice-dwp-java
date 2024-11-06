@@ -2,7 +2,6 @@ package kr.or.iei.member.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberJoinFormServelt
+ * Servlet implementation class MemberSearchInfoFrmServlet
  */
-@WebServlet("/member/joinFrm")
-public class MemberJoinFrmServelt extends HttpServlet {
+@WebServlet("/member/searchInfoFrm")
+public class MemberSearchInfoFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MemberJoinFrmServelt() {
+	public MemberSearchInfoFrmServlet() {
 		super();
 	}
 
@@ -27,16 +26,20 @@ public class MemberJoinFrmServelt extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/join.jsp");
-		view.forward(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String gb = request.getParameter("gb");
+		request.setAttribute("gb", gb);
+		request.getRequestDispatcher("/WEB-INF/views/member/searchInfoFrm.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

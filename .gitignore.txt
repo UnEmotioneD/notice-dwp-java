@@ -5,6 +5,7 @@
 .metadata
 bin/
 tmp/
+build/
 *.tmp
 *.bak
 *.swp
@@ -120,8 +121,3 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java
-
-# Ignore the build directory
-build/
-
-.classpath

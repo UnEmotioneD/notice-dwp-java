@@ -13,7 +13,7 @@
 }
 
 .notice-write-wrap {
-	width: 1000px;
+	width: 1200px;
 }
 
 .notice-write-wrap .input-item>input[type=text] {
