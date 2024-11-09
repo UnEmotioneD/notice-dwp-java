@@ -48,7 +48,7 @@ public class NoticeIndexServlet extends HttpServlet {
 //		}
 //		response.getWriter().print(jsonArr.toJSONString());
 
-		// Method No.1
+		// Method No.2
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(list);
 
