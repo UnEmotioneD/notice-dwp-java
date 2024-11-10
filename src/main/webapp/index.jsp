@@ -70,7 +70,7 @@
 										+ item.noticeNo + "'>"
 										+ item.noticeTitle + "</a></td>";
 								html += "<td>" + item.noticeWriter + "</td>";
-								html += "<td>" + item.noticeDate + "</td>"
+								html += "<td>" + item.noticeDate + "</td>";
 								html += "</tr>";
 
 								$('.section.type' + item.noticeCd).find('.tbl')
