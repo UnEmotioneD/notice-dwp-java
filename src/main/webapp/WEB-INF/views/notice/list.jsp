@@ -33,8 +33,7 @@
 					<div class="list-header">
 						<a class="btn-point" id="write-btn"
 							href='/notice/writeFrm?noticeCd=${noticeCd}&noticeCdNm=${noticeCdNm}'>${noticeCdNm}
-							작성</a>
-						<a class="btn-point" id="write-btn"
+							작성</a> <a class="btn-point" id="write-btn"
 							href='/notice/editorWriteFrm?noticeCd=${noticeCd}&noticeCdNm=${noticeCdNm}'>${noticeCdNm}
 							작성(Editor)</a>
 					</div>
