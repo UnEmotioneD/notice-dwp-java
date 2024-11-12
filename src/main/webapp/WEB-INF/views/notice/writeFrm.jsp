@@ -27,7 +27,6 @@
 </style>
 </head>
 <body>
-
 	<div class="wrap">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<main class="content notice-write-container">
@@ -79,6 +78,5 @@
 		</main>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
-
 </body>
 </html>

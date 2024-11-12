@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>updateFrm.jsp</title>
+<%-- summernote 를 위한 라이브러리 --%>
+<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 <style>
 .delBtn:hover {
 	sursor: pointer;
@@ -81,12 +83,9 @@
 		</main>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
-
-
 	<%-- summerNote 사용을 위한 라이브러리 --%>
 	<script src="/resources/summernote/summernote-lite.js"></script>
 	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
-	<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 
 	<script>
 		//파일 삭제 아이콘 (-) 클릭시 동작 함수

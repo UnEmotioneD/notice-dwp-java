@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class NoticePageData {
-	
 	private ArrayList<Notice> list;
 	private String pageNavi;
 }
