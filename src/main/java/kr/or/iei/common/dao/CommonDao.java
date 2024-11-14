@@ -28,15 +28,12 @@ public class CommonDao {
 				type.setNoticeCdNm(rt.getString("NOTICE_CD_NM"));
 				list.add(type);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rt);
 			JDBCTemplate.close(pt);
 		}
-
 		return list;
 	}
-
 }

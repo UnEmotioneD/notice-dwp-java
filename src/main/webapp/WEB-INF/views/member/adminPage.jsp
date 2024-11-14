@@ -100,7 +100,7 @@ input[type=checkbox].chk+label {
 			- memberNo
 			- memberLevel
 			
-			QUERY = UPDATE TBL_MEMBER SET MEMBER_LEVEL = ? WHERE MEMBER_NO = ?
+			QUERY == UPDATE TBL_MEMBER SET MEMBER_LEVEL = ? WHERE MEMBER_NO = ?
 			 */
 			swal({
 				title : "알림",

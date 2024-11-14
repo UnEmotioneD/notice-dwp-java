@@ -32,7 +32,8 @@ public class NoticeFileDownServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String fileName = request.getParameter("fileName");
 		String filePath = request.getParameter("filePath");
 
@@ -41,7 +42,7 @@ public class NoticeFileDownServlet extends HttpServlet {
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
 		String savePath = rootPath + "resources/upload/" + writeDate + "/";
 
-		File file = new File(savePath+filePath);
+		File file = new File(savePath + filePath);
 
 		if (file.exists()) {
 			BufferedInputStream bis = null;
@@ -87,7 +88,8 @@ public class NoticeFileDownServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

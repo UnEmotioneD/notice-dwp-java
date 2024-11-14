@@ -1,4 +1,4 @@
-package kr.or.iei.notice.controller;
+package kr.or.iei.api.controller;
 
 import java.io.IOException;
 import java.util.Date;

@@ -75,8 +75,8 @@ public class NoticeService {
 
 			// 선택한 페이지와 선택하지 않은 페이지를 시각적으로 다르게 표현
 			if (reqPage == pageNo) {
-				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage=" + pageNo + "&noticeCd=" + noticeCd
-						+ "&noticeCdNm=" + noticeCdNm + "'>";
+				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage=" + pageNo + "&noticeCd="
+						+ noticeCd + "&noticeCdNm=" + noticeCdNm + "'>";
 			} else {
 				pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + pageNo + "&noticeCd=" + noticeCd
 						+ "&noticeCdNm=" + noticeCdNm + "'>";
@@ -94,8 +94,8 @@ public class NoticeService {
 		// 시작번호 <= 전체 페이지 갯수
 		if (pageNo <= totPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item href='/notice/list?reqPage=" + pageNo + "&noticeCd" + noticeCd + "&noticeCdNm"
-					+ noticeCdNm + "'>";
+			pageNavi += "<a class='page-item href='/notice/list?reqPage=" + pageNo + "&noticeCd" + noticeCd
+					+ "&noticeCdNm" + noticeCdNm + "'>";
 			pageNavi += "<span class='material-icons'>chevron_right</span></a>";
 			pageNavi += "</li>";
 		}
@@ -171,7 +171,6 @@ public class NoticeService {
 			} else {
 				JDBCTemplate.rollback(conn);
 			}
-
 		}
 		JDBCTemplate.close(conn);
 
@@ -241,14 +240,14 @@ public class NoticeService {
 			JDBCTemplate.commit(conn);
 			JDBCTemplate.close(conn);
 			return preFileList;
-
 		} else {
 			JDBCTemplate.rollback(conn);
 			JDBCTemplate.close(conn);
 			return null;
 		}
 	}
-	
+
+	// TODO Has debug code
 	public ArrayList<NoticeFile> deleteNotice(String noticeNo) {
 		Connection conn = JDBCTemplate.getConnection();
 		ArrayList<NoticeFile> delList = dao.selectNoticeFileList(conn, noticeNo);
@@ -261,7 +260,6 @@ public class NoticeService {
 			JDBCTemplate.commit(conn);
 			JDBCTemplate.close(conn);
 			return delList;
-
 		} else {
 			JDBCTemplate.rollback(conn);
 			JDBCTemplate.close(conn);

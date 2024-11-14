@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class NoticeComment {
-
 	private String commentNo;
 	private String commentRef;
 	private String commentContent;

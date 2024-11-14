@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>editorFrm.jsp</title>
+<%-- summerNote 사용을 위한 라이브러리 --%>
+<script src="/resources/summernote/summernote-lite.js"></script>
+<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 <style>
 .notice-write-container {
 	display: flex;
@@ -77,21 +81,16 @@
 		</main>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
+
+	<script>
+		$('#noticeContent').summernote({
+			height : 1000,
+			width : 1000,
+			lang : "ko-KR",
+			disableResize : true,
+			disableResizeEditor : true,
+			resize : false
+		});
+	</script>
 </body>
-
-<%-- summerNote 사용을 위한 라이브러리 --%>
-<script src="/resources/summernote/summernote-lite.js"></script>
-<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
-
-<script>
-	$('#noticeContent').summernote({
-		height : 1000,
-		width : 1000,
-		lang : "ko-KR",
-		disableResize : true,
-		disableResizeEditor : true,
-		resize : true
-	});
-</script>
 </html>

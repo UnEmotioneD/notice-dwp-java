@@ -16,9 +16,9 @@ public class NoticeDao {
 	public ArrayList<Notice> selectNoticeList(Connection conn, String noticeCd, int start, int end) {
 		PreparedStatement pt = null;
 		ResultSet rt = null;
-
 		ArrayList<Notice> list = new ArrayList<>();
 		String query = "SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM ( SELECT A.* FROM TBL_NOTICE A WHERE NOTICE_CD = ? ORDER BY NOTICE_NO DESC ) A ) WHERE RNUM BETWEEN ? AND ?";
+
 		try {
 			pt = conn.prepareStatement(query);
 			pt.setString(1, noticeCd);
@@ -135,7 +135,6 @@ public class NoticeDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -162,7 +161,6 @@ public class NoticeDao {
 				n.setNoticeDate(rt.getString("notice_date"));
 				n.setReadCount(rt.getInt("read_count"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -185,9 +183,9 @@ public class NoticeDao {
 			result = pt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pt);
 		}
-		JDBCTemplate.close(pt);
-
 		return result;
 	}
 
@@ -195,31 +193,26 @@ public class NoticeDao {
 		PreparedStatement pt = null;
 		ResultSet rt = null;
 		String query = "SELECT * FROM TBL_NOTICE_FILE WHERE NOTICE_NO = ?";
-		ArrayList<NoticeFile> fileList = new ArrayList<NoticeFile>();
+		ArrayList<NoticeFile> fileList = new ArrayList<>();
 
 		try {
 			pt = conn.prepareStatement(query);
 			pt.setString(1, noticeNo);
-
 			rt = pt.executeQuery();
-
 			while (rt.next()) {
 				NoticeFile file = new NoticeFile();
-
 				file.setFileNo(rt.getString("FILE_NO"));
 				file.setNoticeNo(rt.getString("NOTICE_NO"));
 				file.setFileName(rt.getString("FILE_NAME"));
 				file.setFilePath(rt.getString("FILE_PATH"));
 				fileList.add(file);
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rt);
 			JDBCTemplate.close(pt);
 		}
-
 		return fileList;
 	}
 
@@ -234,15 +227,12 @@ public class NoticeDao {
 			pt.setString(1, notice.getNoticeTitle());
 			pt.setString(2, notice.getNoticeContent());
 			pt.setString(3, notice.getNoticeNo());
-
 			result = pt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -260,7 +250,6 @@ public class NoticeDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -268,17 +257,16 @@ public class NoticeDao {
 		PreparedStatement pt = null;
 		int result = 0;
 		String query = "DELETE FROM TBL_NOTICE WHERE NOTICE_NO = ?";
-	
+
 		try {
 			pt = conn.prepareStatement(query);
 			pt.setString(1, noticeNo);
 			result = pt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -293,13 +281,11 @@ public class NoticeDao {
 			pt.setString(2, comment.getCommentContent());
 			pt.setString(3, comment.getCommentRef());
 			result = pt.executeUpdate();
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
@@ -329,7 +315,6 @@ public class NoticeDao {
 			JDBCTemplate.close(rt);
 			JDBCTemplate.close(pt);
 		}
-
 		return list;
 	}
 
@@ -366,13 +351,14 @@ public class NoticeDao {
 		} finally {
 			JDBCTemplate.close(pt);
 		}
-
 		return result;
 	}
 
 	public ArrayList<Notice> selectIndexanoticeList(Connection conn) {
 		PreparedStatement pt = null;
 		ResultSet rt = null;
+		
+		// notice_cd 별로 그룹을 지어 행번호를 조회
 		String query = "SELECT * FROM ( SELECT ROW_NUMBER() OVER ( PARTITION BY NOTICE_CD ORDER BY NOTICE_DATE DESC ) AS RNUM, A.* FROM TBL_NOTICE A ) WHERE RNUM < = 5";
 		ArrayList<Notice> list = new ArrayList<Notice>();
 
@@ -389,7 +375,7 @@ public class NoticeDao {
 				n.setNoticeWriter(rt.getString("NOTICE_WRITER"));
 				n.setNoticeDate(rt.getString("NOTICE_DATE"));
 				n.setReadCount(rt.getInt("READ_COUNT"));
-				
+
 				list.add(n);
 			}
 		} catch (SQLException e) {

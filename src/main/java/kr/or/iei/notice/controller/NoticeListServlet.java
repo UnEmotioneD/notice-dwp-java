@@ -35,6 +35,7 @@ public class NoticeListServlet extends HttpServlet {
 		String noticeCd = request.getParameter("noticeCd");
 		String noticeCdNm = request.getParameter("noticeCdNm");
 
+		// 사용자 요청 페이지 번호
 		int reqPage = request.getParameter("reqPage") == null ? 1 : Integer.parseInt(request.getParameter("reqPage"));
 
 		// 3. Business logic - 전체 게시글 조회

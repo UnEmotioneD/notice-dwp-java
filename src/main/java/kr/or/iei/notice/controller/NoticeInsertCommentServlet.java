@@ -29,7 +29,8 @@ public class NoticeInsertCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String commentRef = request.getParameter("commentRef");
 		String commentWriter = request.getParameter("commentWriter");
 		String commentContent = request.getParameter("commentContent");
@@ -47,13 +48,13 @@ public class NoticeInsertCommentServlet extends HttpServlet {
 			request.setAttribute("msg", "댓글이 작성되었습니다");
 			request.setAttribute("icon", "success");
 			request.setAttribute("loc", "/notice/view?noticeNo=" + commentRef + "&commentChk=chk");
-	 	} else {
+		} else {
 			request.setAttribute("icon", "실패");
 			request.setAttribute("msg", "댓글 작성중 오류가 발생하였습니다");
 			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/notice/view?noticeNo=" + commentRef + "&commentChk=chk");
-	 	}
-		
+		}
+
 		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 
@@ -61,7 +62,8 @@ public class NoticeInsertCommentServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

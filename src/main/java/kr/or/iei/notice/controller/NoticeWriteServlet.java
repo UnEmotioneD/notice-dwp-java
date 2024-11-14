@@ -45,7 +45,7 @@ public class NoticeWriteServlet extends HttpServlet {
 		String today = sdf.format(date);
 
 		String rootPath = request.getSession().getServletContext().getRealPath("/"); // webapp 폴더 경로
-		String savePath = rootPath + "resource/upload/" + today + "/"; // 파일 저장 경로
+		String savePath = rootPath + "resources/upload/" + today + "/"; // 파일 저장 경로
 
 		int maxSize = 1024 * 1024 * 10; // 바이트 단위 // 10MB 까지
 
@@ -64,11 +64,11 @@ public class NoticeWriteServlet extends HttpServlet {
 		String noticeContent = mRequest.getParameter("noticeContent");
 		String noticeCdNm = mRequest.getParameter("noticeCdNm");
 
-		// 3. 첨부파일 복수개 처리(input type-file 이 여러개 존재)
+		// 3. 첨부파일 복수개 처리(input type = file 이 여러개 존재)
 		Enumeration<String> files = mRequest.getFileNames(); // input type 이 file 인 태그들의 name 속성값
 
 		// DB 에 저장할 때 필요한 피알정보들을 관리할 리스트
-		ArrayList<NoticeFile> fileList = new ArrayList<NoticeFile>();
+		ArrayList<NoticeFile> fileList = new ArrayList<>();
 
 		while (files.hasMoreElements()) {
 			String name = files.nextElement(); // input type 이 file 인 태그의 name 속성값

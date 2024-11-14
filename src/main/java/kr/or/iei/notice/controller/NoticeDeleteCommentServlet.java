@@ -13,46 +13,49 @@ import kr.or.iei.notice.model.service.NoticeService;
 /**
  * Servlet implementation class NoticeDeleteCommentServlet
  */
-@WebServlet("/NoticeDeleteCommentServlet")
+@WebServlet("/notice/deleteComment")
 public class NoticeDeleteCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public NoticeDeleteCommentServlet() {
-        super();
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public NoticeDeleteCommentServlet() {
+		super();
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String noticeNo = request.getParameter("noticeNo");
 		String commentNo = request.getParameter("commentNo");
-		
+
 		NoticeService service = new NoticeService();
 		int result = service.deleteComment(commentNo);
-		
-		if(result > 0) {
+
+		if (result > 0) {
 			request.setAttribute("title", "알림");
 			request.setAttribute("msg", "댓글이 삭제 되었습니다");
 			request.setAttribute("icon", "success");
 			request.setAttribute("loc", "/notice/view?noticeNo=" + noticeNo + "&commentChk=chk");
 		} else {
 			request.setAttribute("title", "알림");
-			request.setAttribute("msg", "댓글이 삭제 중 오류가 발생하였습니다"); 
+			request.setAttribute("msg", "댓글이 삭제 중 오류가 발생하였습니다");
 			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/notice/view?noticeNo=" + noticeNo + "&commentChk=chk");
 		}
-		
-		request.getRequestDispatcher(commentNo).forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

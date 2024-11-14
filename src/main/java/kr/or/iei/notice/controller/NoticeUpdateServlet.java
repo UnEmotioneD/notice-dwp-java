@@ -38,7 +38,8 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// 추가 파일 처리
 		String today = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
@@ -96,15 +97,15 @@ public class NoticeUpdateServlet extends HttpServlet {
 		if (delFileList == null) {
 			request.setAttribute("title", "알림");
 			request.setAttribute("msg", "수정 중 오류가 발생하였습니다");
-			request.setAttribute("icon", "errror");
+			request.setAttribute("icon", "error");
 			request.setAttribute("loc", "/notice/updateFrm?noticeNo=" + noticeNo);
-
 		} else {
 			// 서비스에서 모든 insert, update, delete 가 정상적으로 이루어진 경우
 			for (int i = 0; i < delFileList.size(); i++) {
 				// 파일 업로드 날짜 == 삭제해야할 파일의 폴더명
 				String uploadDate = delFileList.get(i).getFilePath().substring(0, 8);
-				String delFilePath = rootPath + "resources/upload/" + uploadDate + "/" + delFileList.get(i).getFilePath();
+				String delFilePath = rootPath + "resources/upload/" + uploadDate + "/"
+						+ delFileList.get(i).getFilePath();
 
 				File delFile = new File(delFilePath);
 
@@ -125,7 +126,8 @@ public class NoticeUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

@@ -9,7 +9,7 @@ import kr.or.iei.common.vo.NoticeType;
 
 public class CommonService {
 	private CommonDao dao;
-	
+
 	public CommonService() {
 		dao = new CommonDao();
 	}

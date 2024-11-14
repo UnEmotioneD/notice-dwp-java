@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>updateFrm.jsp</title>
-<%-- summernote 를 위한 라이브러리 --%>
+<%-- summerNote 사용을 위한 라이브러리 --%>
+<script src="/resources/summernote/summernote-lite.js"></script>
+<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 <style>
 .delBtn:hover {
@@ -23,12 +25,11 @@
 <body>
 	<div class="wrap">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
-
 		<main class="content">
 			<section class="section notice-update-wrap">
 				<div class="page-title">${notice.noticeCdNm}수정</div>
 				<form action="/notice/update" method="post"
-					enctype="mulippart/form-data">
+					enctype="multipart/form-data">
 					<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
 					<table class="tbl">
 						<tr>
@@ -40,7 +41,6 @@
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<th>첨부파일</th>
 							<td>
@@ -48,20 +48,17 @@
 									<c:forEach var="file" items="${notice.fileList}">
 										<div class="files">
 											<span class="delFileName">${file.fileName}</span> <span
-												class="material-icons delNtn"
+												class="material-icons delBtn"
 												onclick="delFile(this, '${file.fileNo}')">remove_circle</span>
-
 										</div>
 									</c:forEach>
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<th>추가파일</th>
 							<td><input type="file" name="addFile"></td>
 						</tr>
-
 						<tr>
 							<th>내용</th>
 							<td class="left">
@@ -70,22 +67,17 @@
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<td colspan="2">
 								<button class="btn-primary lg">수정</button>
 							</td>
 						</tr>
-
 					</table>
 				</form>
 			</section>
 		</main>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
-	<%-- summerNote 사용을 위한 라이브러리 --%>
-	<script src="/resources/summernote/summernote-lite.js"></script>
-	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 
 	<script>
 		//파일 삭제 아이콘 (-) 클릭시 동작 함수
