@@ -65,10 +65,12 @@ public class MemberSrchInfoPwServlet extends HttpServlet {
 			ranPw.append(lower.charAt(random.nextInt(lower.length())));
 			ranPw.append(digit.charAt(random.nextInt(digit.length())));
 			ranPw.append(special.charAt(random.nextInt(special.length())));
+
 			// 나머지 6자리는 allStr 에서 추출
 			for (int i = 0; i < 6; i++) {
 				ranPw.append(allStr.charAt(random.nextInt(allStr.length())));
 			}
+
 			// 근데 여기까지는 추측 가능함 (첫 4글자의 형태가 고정이기때문에)
 			char[] allChars = ranPw.toString().toCharArray();
 
@@ -127,12 +129,14 @@ public class MemberSrchInfoPwServlet extends HttpServlet {
 				}
 
 				// 임시 비밀번호 생성 후 이메일 전송 완료
-				response.getWriter().print("foo");
+				response.getWriter().print("good");
 			} else {
 				// DB 최신화가 정상적으로 이루어지지 않았을때
+				response.getWriter().print("db didn't got updated");
 			}
 		} else {
 			// 입력한 정보와 일치하는 회원이 존재하지 않을때
+			response.getWriter().print("no match");
 		}
 	}
 

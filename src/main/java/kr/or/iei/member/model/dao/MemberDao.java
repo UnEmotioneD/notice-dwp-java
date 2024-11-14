@@ -184,10 +184,24 @@ public class MemberDao {
 		return result;
 	}
 
-
-	// TODO update member password 작성하기
+	// after password encryption
 	public int updateMemberPw(Connection conn, String memberId, String newMemberPw) {
-		return 0;
+		PreparedStatement pt = null;
+		int result = 0;
+		String query = "update tbl_member set member_pw = ? where member_id = ?";
+
+		try {
+			pt = conn.prepareStatement(query);
+			pt.setString(1, newMemberPw);
+			pt.setString(2, memberId);
+
+			result = pt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pt);
+		}
+		return result;
 	}
 
 	public ArrayList<Member> selectAllMember(Connection conn) {
@@ -274,7 +288,7 @@ public class MemberDao {
 			pt = conn.prepareStatement(query);
 			pt.setString(1, memberId);
 			pt.setString(2, memberEmail);
-			
+
 			rt = pt.executeQuery();
 
 			if (rt.next()) {

@@ -31,24 +31,22 @@ public class MemberSrchInfoIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String memberEmail = request.getParameter("memberEmail");
-		
+
 		MemberService service = new MemberService();
 		String memberId = service.srchInfoId(memberEmail);
 
 		if (memberId != null) {
-			
+
 			// un*******ed 처럼 보여주기
 			int idLen = memberId.length(); // 조회한 아이디의 길이
 
 			String first = memberId.substring(0, 2); // 아이디 첫 2자리
 			String last = memberId.substring(idLen - 2); // 아이디 마지막 2자리
 			String marker = "*".repeat(idLen - 4); // (아이디 길이) - 4 만큼 (*) 생성
-			
-			memberId = first + marker + last;
 
+			memberId = first + marker + last;
 		} else {
 			memberId = "";
-
 		}
 		response.getWriter().print(memberId);
 	}

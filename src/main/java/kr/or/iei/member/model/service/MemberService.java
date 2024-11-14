@@ -11,7 +11,6 @@ import kr.or.iei.member.model.dao.MemberDao;
 import kr.or.iei.member.model.vo.Member;
 
 public class MemberService {
-
 	MemberDao dao;
 
 	public MemberService() {
@@ -111,7 +110,7 @@ public class MemberService {
 		return result;
 	}
 
-	// TODO MemberDao 에서 함수 명 틀림 원래 서블릿에서도 틀림
+	// After password encryption
 	public int updateMemberPw(String memberId, String newMemberPw) {
 		Connection conn = JDBCTemplate.getConnection();
 

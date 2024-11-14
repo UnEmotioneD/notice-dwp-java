@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MemberLoginFrmServlet
+ * Servlet implementation class MemberPwChgFrmServlet
  */
-@WebServlet("/member/loginFrm")
-public class MemberLoginFrmServlet extends HttpServlet {
+@WebServlet("/MemberPwChgFrmServlet")
+public class MemberPwChgFrmServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MemberLoginFrmServlet() {
+	public MemberPwChgFrmServlet() {
 		super();
 	}
 
@@ -29,12 +29,9 @@ public class MemberLoginFrmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. Encoding
-		// 2. Value extraction
-		// 3. Business logic
-		// 4. Process results -> move to login page
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/login.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/pwChg.jsp");
 		view.forward(request, response);
+
 	}
 
 	/**
