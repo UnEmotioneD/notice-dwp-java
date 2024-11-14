@@ -22,27 +22,23 @@
 </style>
 </head>
 <body>
-	<div class="warp">
+	<div class="wrap">
 		<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<main class="content">
 			<c:forEach var="notice" items="${noticeTypeList}">
 				<section class="section type${notice.noticeCd}">
-					<div class="page-title" style="text-align: left;">
-						${notice.noticeCdNm}
+					<div class="page-title" style="text-align: left;">${notice.noticeCdNm}
 						<div class="list-header">
 							<a
-								href='/notice/list?reqPage=1&noticeCd=${notice.noticeCd}
-								&noticeCdNm=${notice.noticeCdNm}'>더보기
-								...</a>
+								href='/notice/list?reqPage=1&noticeCd=${notice.noticeCd}&noticeCdNm=${notice.noticeCdNm}'>더보기...</a>
 						</div>
-
 						<div class="list-content">
 							<table class="tbl hover">
 								<tr class="th">
-									<th style="width: 10%">번호</th>
-									<th style="width: 10%">제목</th>
-									<th style="width: 10%">작성자</th>
-									<th style="width: 10%">작성일</th>
+									<th style="width: 10%;">번호</th>
+									<th style="width: 50%;">제목</th>
+									<th style="width: 20%;">작성자</th>
+									<th style="width: 20%;">작성일</th>
 								</tr>
 							</table>
 						</div>
