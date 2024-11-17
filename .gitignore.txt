@@ -1,19 +1,18 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,eclipse,java
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,eclipse,java
+# Created by https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,eclipse
 
 ### Eclipse ###
 .metadata
 bin/
 tmp/
-build/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
+.settings/
 .loadpath
 .recommenders
-.settings/
 
 # External tool builders
 .externalToolBuilders/
@@ -120,4 +119,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java
+
+# End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse
