@@ -64,6 +64,12 @@ public class NoticeWriteServlet extends HttpServlet {
 		String noticeWriter = mRequest.getParameter("noticeWriter");
 		String noticeContent = mRequest.getParameter("noticeContent");
 		String noticeCdNm = mRequest.getParameter("noticeCdNm");
+		
+		System.out.println("noticeCd : " + noticeCd);
+		System.out.println("noticeTitle : " + noticeTitle);
+		System.out.println("noticeWriter : " + noticeWriter);
+		System.out.println("noticeContent : " + noticeContent);
+		System.out.println("noticeCdNm : " + noticeCdNm);
 
 		// 3. 첨부파일 복수개 처리(input type = file 이 여러개 존재)
 		Enumeration<String> files = mRequest.getFileNames(); // input type 이 file 인 태그들의 name 속성값
