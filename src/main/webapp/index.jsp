@@ -8,7 +8,7 @@
 <title>index.jsp File</title>
 <style>
 .section {
-	margin-bottoma: 20px;
+	margin-bottom: 20px;
 }
 
 .list-header {

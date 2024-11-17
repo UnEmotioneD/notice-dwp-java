@@ -60,20 +60,21 @@ public class NoticeService {
 		// 페이지 네비개이션 HTML 태그 생성
 		String pageNavi = "<ul class='pagination circle-style'>";
 
+		// 이전 버튼 생성
 		if (pageNo != 1) {
-			// 6 7 8 9 10 또는 11 12 13 14 15 or ...
+			// 6 7 8 9 10 or 11 12 13 14 15 or 16 17 18 19 20 ...........
 			pageNavi += "<li>";
 			pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + (pageNo - 1) + "&noticeCd=" + noticeCd
 					+ "&noticeCdNm=" + noticeCdNm + "'>";
-			pageNavi += "<span class='material-icons'>chevron_left</span></a>";
+			pageNavi += "<span class='material-icons'>chevron_left</span>";
 			pageNavi += "</li>";
 		}
 
-		// 페이지 네비게이션 사이즈만큼 반복하며 태그 생성
+		// 페이지 네비게이션 사이즈만큼 반복하며, 태그 생성
 		for (int i = 0; i < pageNaviSize; i++) {
 			pageNavi += "<li>";
 
-			// 선택한 페이지와 선택하지 않은 페이지를 시각적으로 다르게 표현
+			// 선택한 페이지와, 선택하지 않은 페이지를 시각적으로 다르게 표현
 			if (reqPage == pageNo) {
 				pageNavi += "<a class='page-item active-page' href='/notice/list?reqPage=" + pageNo + "&noticeCd="
 						+ noticeCd + "&noticeCdNm=" + noticeCdNm + "'>";
@@ -85,7 +86,6 @@ public class NoticeService {
 			pageNavi += pageNo + "</a></li>";
 			pageNo++;
 
-			// 쓸데 없는 페이지 번호는 만들지 않도록
 			if (pageNo > totPage) {
 				break;
 			}
@@ -94,9 +94,9 @@ public class NoticeService {
 		// 시작번호 <= 전체 페이지 갯수
 		if (pageNo <= totPage) {
 			pageNavi += "<li>";
-			pageNavi += "<a class='page-item href='/notice/list?reqPage=" + pageNo + "&noticeCd" + noticeCd
-					+ "&noticeCdNm" + noticeCdNm + "'>";
-			pageNavi += "<span class='material-icons'>chevron_right</span></a>";
+			pageNavi += "<a class='page-item' href='/notice/list?reqPage=" + pageNo + "&noticeCd=" + noticeCd
+					+ "&noticeCdNm=" + noticeCdNm + "'>";
+			pageNavi += "<span class='material-icons'>chevron_right</span>";
 			pageNavi += "</li>";
 		}
 
