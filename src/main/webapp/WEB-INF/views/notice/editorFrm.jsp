@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>editorFrm.jsp</title>
-<%-- summerNote 사용을 위한 라이브러리 --%>
-<script src="/resources/summernote/summernote-lite.js"></script>
-<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="/resources/summernote/summernote-lite.css">
 <style>
 .notice-write-container {
@@ -81,7 +78,9 @@
 		</main>
 		<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 	</div>
-
+	<%-- header tag 안에 있으면 동작하지 앟음 --%>
+	<script src="/resources/summernote/summernote-lite.js"></script>
+	<script src="/resources/summernote/lang/summernote-ko-KR.js"></script>
 	<script>
 		$('#noticeContent').summernote({
 			height : 1000,

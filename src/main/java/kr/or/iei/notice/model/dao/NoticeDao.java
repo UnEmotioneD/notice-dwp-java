@@ -79,7 +79,7 @@ public class NoticeDao {
 	public String selectNoticeNo(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "select to_char(sysdate, 'yymmdd') || lpad(seq_notice.nextval, 4, '0') as notice_no from dual";
+		String query = "select to_char(sysdate, 'yymmdd') || lpad(seq_notice.nextval, 4 ,'0') as notice_no from dual";
 		String noticeNo = "";
 
 		try {
@@ -87,7 +87,6 @@ public class NoticeDao {
 			rset = pstmt.executeQuery();
 			rset.next();
 			noticeNo = rset.getString("notice_no");
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -99,42 +98,44 @@ public class NoticeDao {
 	}
 
 	public int insertNotice(Connection conn, Notice notice) {
-		PreparedStatement pt = null;
+		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO TBL_NOTICE VALUES (?, ?, ?, ?, ?, SYSDATE, DEFAULT)";
+		String query = "insert into tbl_notice values (?, ?, ?, ?, ?, sysdate, default)";
 
 		try {
-			pt = conn.prepareStatement(query);
-			pt.setString(1, notice.getNoticeNo());
-			pt.setString(2, notice.getNoticeCd());
-			pt.setString(3, notice.getNoticeTitle());
-			pt.setString(4, notice.getNoticeContent());
-			pt.setString(5, notice.getNoticeWriter());
-			result = pt.executeUpdate();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, notice.getNoticeNo());
+			pstmt.setString(2, notice.getNoticeCd());
+			pstmt.setString(3, notice.getNoticeTitle());
+			pstmt.setString(4, notice.getNoticeContent());
+			pstmt.setString(5, notice.getNoticeWriter());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pt);
+			JDBCTemplate.close(pstmt);
 		}
+
 		return result;
 	}
 
 	public int insertNoticeFile(Connection conn, NoticeFile file) {
-		PreparedStatement pt = null;
-		String query = "INSERT INTO TBL_NOTICE_FILE VALUES (TO_CHAR(SYSDATE, 'yymmdd') || LPAD(SEQ_NOTICE_FILE.NEXTVAL, 4,'0'), ?, ?, ?)";
+		PreparedStatement pstmt = null;
+		String query = "insert into tbl_notice_file values (to_char(sysdate, 'yymmdd')||lpad(seq_notice_file.nextval, 4, '0'), ?, ?, ?)";
 		int result = 0;
 
 		try {
-			pt = conn.prepareStatement(query);
-			pt.setString(1, file.getNoticeNo());
-			pt.setString(2, file.getFileName());
-			pt.setString(3, file.getFilePath());
-			result = pt.executeUpdate();
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, file.getNoticeNo());
+			pstmt.setString(2, file.getFileName());
+			pstmt.setString(3, file.getFilePath());
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(pt);
+			JDBCTemplate.close(pstmt);
 		}
+
 		return result;
 	}
 
@@ -357,7 +358,7 @@ public class NoticeDao {
 	public ArrayList<Notice> selectIndexanoticeList(Connection conn) {
 		PreparedStatement pt = null;
 		ResultSet rt = null;
-		
+
 		// notice_cd 별로 그룹을 지어 행번호를 조회
 		String query = "SELECT * FROM ( SELECT ROW_NUMBER() OVER ( PARTITION BY NOTICE_CD ORDER BY NOTICE_DATE DESC ) AS RNUM, A.* FROM TBL_NOTICE A ) WHERE RNUM < = 5";
 		ArrayList<Notice> list = new ArrayList<Notice>();
