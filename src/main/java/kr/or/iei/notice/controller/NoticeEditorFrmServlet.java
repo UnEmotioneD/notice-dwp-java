@@ -28,8 +28,8 @@ public class NoticeEditorFrmServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setAttribute("noticeCd", request.getParameter("noiceCd"));
-		request.setAttribute("noticeCdNm", request.getParameter("noiceCdNm"));
+		request.setAttribute("noticeCd", request.getParameter("noticeCd"));
+		request.setAttribute("noticeCdNm", request.getParameter("noticeCdNm"));
 		request.getRequestDispatcher("/WEB-INF/views/notice/editorFrm.jsp").forward(request, response);
 	}
 
