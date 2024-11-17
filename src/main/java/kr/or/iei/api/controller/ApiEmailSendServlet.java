@@ -67,14 +67,14 @@ public class ApiEmailSendServlet extends HttpServlet {
 			msg.setFrom(new InternetAddress("unemotioned@naver.com", "UnEmotioneD"));
 
 			// 수신자 1명 일때
-//			InternetAddress to = new InternetAddress(receiver);
-//			msg.setRecipient(Message.RecipientType.TO, to);
+			InternetAddress to = new InternetAddress(receiver);
+			msg.setRecipient(Message.RecipientType.TO, to);
 
 			// 수신자 여러명 일때
-			InternetAddress[] receiverArr = new InternetAddress[2];
-			receiverArr[0] = new InternetAddress("blackeagle10@icloud.com");
-			receiverArr[1] = new InternetAddress("blackeagle10@icloud.com");
-			msg.setRecipients(Message.RecipientType.TO, receiverArr);
+//			InternetAddress[] receiverArr = new InternetAddress[2];
+//			receiverArr[0] = new InternetAddress("blackeagle10@icloud.com");
+//			receiverArr[1] = new InternetAddress("blackeagle10@icloud.com");
+//			msg.setRecipients(Message.RecipientType.TO, receiverArr);
 
 			msg.setSubject(emailTitle);
 			msg.setContent(emailContent, "text/html; charset=UTF-8");
