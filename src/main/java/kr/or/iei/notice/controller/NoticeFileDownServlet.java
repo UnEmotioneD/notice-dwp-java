@@ -37,7 +37,6 @@ public class NoticeFileDownServlet extends HttpServlet {
 		String fileName = request.getParameter("fileName");
 		String filePath = request.getParameter("filePath");
 
-		// 파일이름에서 앞에 8자리
 		String writeDate = filePath.substring(0, 8);
 		String rootPath = request.getSession().getServletContext().getRealPath("/");
 		String savePath = rootPath + "resources/upload/" + writeDate + "/";
@@ -52,8 +51,8 @@ public class NoticeFileDownServlet extends HttpServlet {
 				FileInputStream fis = new FileInputStream(file);
 				bis = new BufferedInputStream(fis);
 
-				// MIME-TPYE : 파일 형식과 파일이 어떻게 처리되어야 하는지를 나타내는 식별자
-				response.setContentType("application/octect-stream");
+				// MIME-TYPE : 파일 형식과, 파일이 어떻게 처리되어야 하는지를 나타내는 식별자
+				response.setContentType("application/octet-stream");
 
 				String resFileName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
 
@@ -66,7 +65,6 @@ public class NoticeFileDownServlet extends HttpServlet {
 
 				while (true) {
 					int read = bis.read();
-
 					if (read == -1) {
 						break;
 					} else {
