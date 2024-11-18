@@ -17,6 +17,7 @@
 		<div class="Logo">
 			<a href="/index.jsp">UnEmotioneD</a>
 		</div>
+
 		<nav class="nav">
 			<ul>
 				<%-- Listener 에서 조회한 메뉴 종류 --%>
@@ -30,9 +31,9 @@
 						<li><a href='/api/naverMaps'>지도</a>
 						<li><a href='/api/emailSendFrm'>이메일</a>
 					</ul></li>
-
 			</ul>
 		</nav>
+
 		<ul class="user-menu">
 			<c:choose>
 				<c:when test="${empty sessionScope.loginMember}">
