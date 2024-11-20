@@ -68,11 +68,11 @@
 
 					<tr>
 						<th>첨부파일</th>
-						<td colspan="5"><c:forEach var="file"
-								items="${notice.fileList}">
-								<a
-									href="javascript:fileDown('${file.fileName}', '${file.filePath}')">${file.fileName}</a>
-							</c:forEach></td>
+							<td colspan="5">
+								<c:forEach var="file" items="${notice.fileList}">
+									<a href="javascript:fileDown('${file.fileName}', '${file.filePath}')">${file.fileName}</a>
+								</c:forEach>
+							</td>
 					</tr>
 
 					<tr>

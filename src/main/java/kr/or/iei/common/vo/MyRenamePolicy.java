@@ -19,7 +19,7 @@ public class MyRenamePolicy implements FileRenamePolicy {
 
 		int ranNum = new Random().nextInt(10000) + 1; // 1 부터 10000 까지 랜던한 숫자
 
-		String str = "_" + String.format("%05d", ranNum); // 랜던 숫자를 모두 5자리고 생성
+		String str = "_" + String.format("%05d", ranNum); // 랜덤 숫자를 모두 5자리로 생성
 
 		String name = originFile.getName();
 		String ext = null;
