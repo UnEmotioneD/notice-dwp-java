@@ -23,13 +23,13 @@ public class NoticeService {
 
 		// 한 페이지에 보여줄 게시글의 갯수
 		int viewNoticeCnt = 10;
-		/*
-		 * 요청 페이지가 1 번 페이지 일때, -> start : 1, end : 10 요청 페이지가 2 번 페이지 일때, -> start : 11,
-		 * end : 20 요청 페이지가 3 번 페이지 일때, -> start : 21, end : 30 ...
-		 * 
-		 * 한번에 보여줄 게시글이 5개 일때 요청 페이지가 1 번 페이지 일때, -> start : 1, end : 5 요청 페이지가 2 번 페이지
-		 * 일때, -> start : 6, end : 10 요청 페이지가 3 번 페이지 일때, -> start : 11, end : 15 ...
-		 */
+		// 요청 페이지가 1 번 페이지 일때, -> start : 1, end : 10 
+		// 요청 페이지가 2 번 페이지 일때, -> start : 11, end : 20 
+		// 요청 페이지가 3 번 페이지 일때, -> start : 21, end : 30 ...
+
+		// 한번에 보여줄 게시글이 5개 일때 요청 페이지가 1 번 페이지 일때, -> start : 1, end : 5 
+		// 요청 페이지가 2 번 페이지 일때, -> start : 6, end : 10 
+		// 요청 페이지가 3 번 페이지 일때, -> start : 11, end : 15 ...
 		int end = reqPage * viewNoticeCnt;
 		int start = end - viewNoticeCnt + 1;
 
