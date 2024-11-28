@@ -38,7 +38,7 @@ public class MemberDuplicationCheckServlet extends HttpServlet {
 		MemberService service = new MemberService();
 		int result = service.idDuplChk(memberId);
 
-		// 4. 결과 처리 - 피에지 이동시 화면을 다시 그리모르 기존 입력값 사라짐
+		// 4. 결과 처리 - 피에지 이동시 화면을 다시 그리므로 기존 입력값 사라짐
 		// JSP 에서 AJAX 를 이용해서 요청에 대한 응답
 		// 응답용 스트림을 이용해서 데이터를 전달
 		response.getWriter().print(result);
